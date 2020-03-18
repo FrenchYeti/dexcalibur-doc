@@ -4,12 +4,12 @@ Install this requirements before to continue.
 
 Desktop requirements :
 -   NodeJS > 12.0.0 (else UInt64 buffer contained into the targeted bytecode are not fully supported) 
--   Frida (any version, create an issue if you experiment a problem)
+-   [Frida](https://frida.re/) (any version, create an issue if you experiment a problem)
 -   Java > 8
 -   APKTool
 
 Device requirements :
--   Frida-server (compatible version)
+-  Download and install Frida-server ([reference documentation]](https://frida.re/docs/android/))
 
 ## 2 Pull/build the dependencies
 
@@ -50,7 +50,7 @@ If Java binary is not in your $PATH, add the absolute path to your configuration
 
 Ensure your device is connected and detected. 
 
-Start frida-server on your device (you should adapt the command) :
+Start [frida-server](https://frida.re/docs/android/) on your device (you should adapt the command) :
 ```
 adb shell su -c "/data/local/tmp/frida-server"
 ```
