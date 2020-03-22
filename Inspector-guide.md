@@ -135,9 +135,13 @@ IssueInspector.hookSet.addIntercept({
 
 ## 4. Declaring an event listener
 
-## 5. 
+## 5. Examples of inspectors
 
-## 3. Add a graphical user interface
+### SSL Pinning
 
+`src/Security.js` declares three hooks related to SSL pinning:
 
-## 3. Distribute
+* custom_keystore_based: The application seems use a custom keystore where the custom certificate is stored
+* harcoded_certificate_signature: SSL Pining uses a comparaison with an hardcoded signature
+* okhttp3_pinner: SSL Pining by the okHttpClient and a custom keystore
+
