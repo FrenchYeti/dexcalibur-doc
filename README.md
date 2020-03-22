@@ -14,4 +14,4 @@ This wiki contains lot of information about Dexcalibur from how to install the t
 ## Slides 
 
 * [Slides of Pass the SALT 2019 (PDF)](https://2019.pass-the-salt.org/files/slides/02-Dexcalibur.pdf)
-* [Slides of THCON2020 (PDF)](https://github.com/FrenchYeti/dexcalibur-doc/blob/master/slides/DexcaliburTHC2020.pdf)
+* [Slides of THCON2020 (PDF)](https://github.com/FrenchYeti/dexcalibur-doc/raw/master/slides/DexcaliburTHC2020.pdf)
