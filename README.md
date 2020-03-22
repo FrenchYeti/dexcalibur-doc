@@ -8,5 +8,5 @@ This wiki contains lot of information about Dexcalibur from how to install the t
 * [How to install Dexcalibur](https://github.com/FrenchYeti/dexcalibur-doc/blob/master/Installation-guide.md)
 * [Gallery](https://github.com/FrenchYeti/dexcalibur-doc/blob/master/Gallery.md)
 * [Troubleshoots](https://github.com/FrenchYeti/dexcalibur-doc/blob/master/Troubleshoots.md)
-* [How to creare an inspector](https://github.com/FrenchYeti/dexcalibur-doc/blob/master/Inspector-guide.md)
+* [How to create an inspector](https://github.com/FrenchYeti/dexcalibur-doc/blob/master/Inspector-guide.md)
 
