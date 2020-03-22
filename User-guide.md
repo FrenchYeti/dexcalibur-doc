@@ -130,4 +130,28 @@ Results are better if the application has been executed several times with instr
 
 # 7. API
 
+`msg`: `http://localhost:8000/api/probe/msg` returns a JSON file with all the event 
+
+```json
+         {
+            "action" : "Update",
+            "after" : false,
+            "before" : true,
+            "data" : {
+               "name" : "android.app.servertransaction.StopActivityItem"
+            },
+            "hook" : "Zjg3YmRjOTA3ZTVjNzdhNDIxNGM2Yzg5YTM5OGQ4N2Y=",
+            "isIntercept" : false,
+            "match" : true,
+            "msg" : "Class.forName()",
+            "tags" : [
+               {
+                  "style" : "purple",
+                  "text" : "dynamic"
+               }
+            ]
+         }
+```
+
+
 [Home](./Home.md)
