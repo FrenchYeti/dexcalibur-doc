@@ -113,8 +113,21 @@ The hook set tab contain all the scanners that are present in folder `src/scanne
 
 # 4. Scanners
 
+
 # 5. Inspectors
 
-# 6. API
+# 6. Conformity scan
+
+## 6.A SSL Pinning  (work in progress)
+
+`src/Security.js` declares three heuristics related to SSL pinning. Such heuristics use Dexcalibur's static analyzer to identify if certificate verifying pattern are detected over the code. 
+
+Results are better if the application has been executed several times with instrumentation before to perform the scan.
+
+* custom_keystore_based: The application seems use a custom keystore where the custom certificate is stored
+* harcoded_certificate_signature: SSL Pining uses a comparaison with an hardcoded signature
+* okhttp3_pinner: SSL Pining by the okHttpClient and a custom keystore
+
+# 7. API
 
 [Home](./Home.md)
