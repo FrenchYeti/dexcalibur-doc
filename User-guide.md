@@ -74,25 +74,33 @@ Symbols - such as method name, class name, field name and so - can be aliased th
 Aliases can be saved and share with other users. If several users work remotely with the same instance, they share automatically all aliases.
 
 
-## 2.c The "Hook dashboard" tab
+## 2.c The "Hooks" tab
 
-The view is your "hooking workspace", it resumes all hook existing for this application.
+The view `/pages/probe.html` summarizes all hooks existing for this application. It contains:
 
-### 2.c.1  Enable / disable an hook 
+* Dashboard
+* Logs
+* Hook set
 
-You can turn a hook ON/OFF by clicking on the button. If the hook is turned to OFF (button is red and display "OFF"), the hook will not be deployed next runs. The hook code is not lose and you can turn it ON more later.
+### 2.c.1  The Hook Dashboard 
 
-### 2.c.2  Modify an hook
+By default, the hook dashboard shows all hooks in the app. The hooks are taken from the files in folder `inspectors/`.
 
-
-
-
-### 2.c.2  Delete definitively an hook
+You can turn a hook ON/OFF by clicking on the button ON/OFF. If the hook is turned to OFF (button is red and display "OFF"), the hook will not be deployed in the next run. The hook code is not lost and you can turn it ON more later.
 
 Hook can be move by clicking on the red trash button. Be aware, if it's a built-in hook it can breaks feature like dynamic discovering. It is generally a better choice to turn OFF the hook. 
 
+## 2.c.2 The "Hook logs"
 
-## 2.d The "Hook logs" tab
+When an application is spawned, page `/pages/probelog.html` is shown. It contains the list of all collected events for the activated hooks. 
+
+## 2.c.3 "Hook sets"
+
+The hook set tab contain all the scanners that are present in folder `src/scanner/`, for example:
+
+* Deobfuscater.js
+* KeystoreScanner.js
+* RootDetection.js
 
 ## 2.e The "Security scanner" tab
 
