@@ -16,4 +16,4 @@ The Hook Manager has several tasks including:
 
 
 Picture below summarizes what it is included into HookManager object. 
-[Hook manager architecture](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/v0_6_3_hook_manager.png)
+![Hook manager architecture](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/v0_6_3_hook_manager.png)
