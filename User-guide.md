@@ -153,5 +153,5 @@ Results are better if the application has been executed several times with instr
          }
 ```
 
-
-[Home](./Home.md)
+# 8. Architecture
+![Hook manager](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/v0_6_3_hook_manager.png)
