@@ -130,6 +130,8 @@ Results are better if the application has been executed several times with instr
 
 # 7. API
 
+## MSG
+
 `msg`: `http://localhost:8000/api/probe/msg` returns a JSON file with all the event 
 
 ```json
@@ -152,6 +154,13 @@ Results are better if the application has been executed several times with instr
             ]
          }
 ```
+
+## Hook id
+
+The `GET /api/hook/:hookid` endpoint returns the hook information based on it id, eg `GET /api/hook/Zjg3YmRjOTA3ZTVjNzdhNDIxNGM2Yzg5YTM5OGQ4N2Y`
+
+You can use it in Javascript as follows: `"/api/hook/"+atob("Zjg3YmRjOTA3ZTVjNzdhNDIxNGM2Yzg5YTM5OGQ4N2Y=")`
+
 
 # 8. Architecture
 ![Hook manager](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/v0_6_3_hook_manager.png)
