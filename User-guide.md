@@ -84,7 +84,10 @@ The view `/pages/probe.html` summarizes all hooks existing for this application
 
 ### 2.c.1  The Hook Dashboard 
 
-By default, the hook dashboard shows all hooks in the app. The hooks are taken from the files in folder `inspectors/`.
+By default, the hook dashboard shows all hooks in the app. The hooks are taken from the files in folder `inspectors/`. An Inspector contains 0 or 1 hook set, and a hook set contains 0 or N hooks. Each hook has an ID and a Parent ID.
+
+The parentID of the hook, is the UID of its parent HookSet.
+If the hook set is defined into an Inspector, then the HookSet ID is the same than Inspector ID.
 
 You can turn a hook ON/OFF by clicking on the button ON/OFF. If the hook is turned to OFF (button is red and display "OFF"), the hook will not be deployed in the next run. The hook code is not lost and you can turn it ON more later.
 
