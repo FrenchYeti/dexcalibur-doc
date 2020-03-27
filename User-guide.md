@@ -130,6 +130,29 @@ Results are better if the application has been executed several times with instr
 
 # 7. API
 
+## Probes
+
+The list of loaded probes can be seen at http://localhost:8000/api/probe
+
+```json
+      {
+         "code" : {
+            "after" : null,
+            "before" : null,
+            "replace" : "<base64 encoded content>"
+         },
+         "customName" : false,
+         "edited" : false,
+         "enable" : true,
+         "id" : "2737b36825e9ff9d773936b1133af61d",
+         "isIntercept" : true,
+         "method" : "java.lang.String.contains(<java.lang.CharSequence>)<boolean>",
+         "name" : "java.lang.String.contains(<java.lang.CharSequence>)<boolean>",
+         "parentID" : "RootDetection",
+         "script" : "<base64 encoded content>"
+      }
+```
+
 ## MSG
 
 `msg`: `http://localhost:8000/api/probe/msg` returns a JSON file with all the event 
