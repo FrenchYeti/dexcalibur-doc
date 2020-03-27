@@ -155,7 +155,7 @@ The list of loaded probes can be seen at http://localhost:8000/api/probe
 
 ## MSG
 
-`msg`: `http://localhost:8000/api/probe/msg` returns a JSON file with all the event 
+`msg`: `http://localhost:8000/api/probe/msg` returns a JSON file with all the events. This can then be queried in Javascript or with tools like jq: `jq -r .data.message[].hook msg.json` returns all hooks involved in the current run.
 
 ```json
          {
@@ -177,6 +177,7 @@ The list of loaded probes can be seen at http://localhost:8000/api/probe
             ]
          }
 ```
+
 
 ## Hook id `
 
