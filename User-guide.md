@@ -142,7 +142,7 @@ Results are better if the application has been executed several times with instr
             "data" : {
                "name" : "android.app.servertransaction.StopActivityItem"
             },
-            "hook" : "Zjg3YmRjOTA3ZTVjNzdhNDIxNGM2Yzg5YTM5OGQ4N2Y=",
+            "hook" : "Zjg3YmRjOTA3ZTVjNzdhNDIxNGM2Yzg5YTM5OGQ4N2Y=", // this value is base64 encoded
             "isIntercept" : false,
             "match" : true,
             "msg" : "Class.forName()",
@@ -155,9 +155,31 @@ Results are better if the application has been executed several times with instr
          }
 ```
 
-## Hook id
+## Hook id `
 
-The `GET /api/hook/:hookid` endpoint returns the hook information based on it id, eg `GET /api/hook/Zjg3YmRjOTA3ZTVjNzdhNDIxNGM2Yzg5YTM5OGQ4N2Y`
+The `GET /api/hook/:hookid` endpoint returns the hook information based on it id, eg `GET /api/hook/49404d2132423a518db61f49a3f9c070`. Note that `/api/probe/msg` returns a hook identifier which is encoded in base64.
+
+```json
+{
+   "hook" : {
+      "code" : {
+         "after" : null,
+         "before" : null,
+         "replace" : "ICAgICAgICAKICAgICAgICBzZW5kKHsgCiAgICAgICAgICAgIGlkOiJAQF9fSE9PS19JRF9fQEAiLCAKICAgICAgICAgICAgbWF0Y2g6IHRydWUsIAogICAgICAgICAgICBkYXRhOiB7CiAgICAgICAgICAgICAgICBjbHM6IGFyZ3VtZW50c1swXSwKICAgICAgICAgICAgICAgIHN0YWNrOiBAQF9fQ1RYX19AQF9zdGFja1RyYWNlKCkKICAgICAgICAgICAgfSwKICAgICAgICAgICAgYWZ0ZXI6IHRydWUsIAogICAgICAgICAgICBtc2c6ICJDbGFzcy5mb3JOYW1lKCkiLCAKICAgICAgICAgICAgYWN0aW9uOiAiLSIKICAgICAgICB9KTsKCiAgICAgICAgcmV0dXJuIG1ldGhfQEBfX01FVEhERUZfX0BALmNhbGwodGhpcywgYXJndW1lbnRzWzBdLCBhcmd1bWVudHNbMV0sIGFyZ3VtZW50c1syXSk7CiAgICA="
+      },
+      "customName" : false,
+      "edited" : false,
+      "enable" : true,
+      "id" : "49404d2132423a518db61f49a3f9c070",
+      "isIntercept" : true,
+      "method" : "java.lang.Class.forName(<java.lang.String><boolean><java.lang.ClassLoader>)<java.lang.Class>",
+      "name" : "java.lang.Class.forName(<java.lang.String><boolean><java.lang.ClassLoader>)<java.lang.Class>",
+      "parentID" : "DeObfuscation",
+      "script" : "JTBBJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwdmFyJTIwY2xzX2JmZDI5YmIyY2RlNWU3OWYzYjcxNzRkMWQ5MWZmZGRkJTIwJTNEJTIwSmF2YS51c2UoJ2phdmEubGFuZy5DbGFzcycpJTNCJTBBJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwdmFyJTIwbWV0aF8zYzVkZTg3MWIzMjRhNDEwYTQzOGNhN2JjNWEwYjc2OSUyMCUzRCUyMGNsc19iZmQyOWJiMmNkZTVlNzlmM2I3MTc0ZDFkOTFmZmRkZC5mb3JOYW1lLm92ZXJsb2FkKCdqYXZhLmxhbmcuU3RyaW5nJyUyQydib29sZWFuJyUyQydqYXZhLmxhbmcuQ2xhc3NMb2FkZXInKSUzQiUwQSUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMG1ldGhfM2M1ZGU4NzFiMzI0YTQxMGE0MzhjYTdiYzVhMGI3NjkuaW1wbGVtZW50YXRpb24lMjAlM0QlMjBmdW5jdGlvbihhcmcwJTJDYXJnMSUyQ2FyZzIpJTIwJTdCJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwc2VuZCglN0IlMjAlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBpZCUzQSUyMk5EazBNRFJrTWpFek1qUXlNMkUxTVRoa1lqWXhaalE1WVRObU9XTXdOekElM0QlMjIlMkMlMjAlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBtYXRjaCUzQSUyMHRydWUlMkMlMjAlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjBkYXRhJTNBJTIwJTdCJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwY2xzJTNBJTIwYXJndW1lbnRzJTVCMCU1RCUyQyUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMHN0YWNrJTNBJTIwY3R4XzAwMDVmZWE1YTEzNGYxMGZlODRiMzIwOGMyMGZkNDY1X3N0YWNrVHJhY2UoKSUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCU3RCUyQyUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGFmdGVyJTNBJTIwdHJ1ZSUyQyUyMCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMG1zZyUzQSUyMCUyMkNsYXNzLmZvck5hbWUoKSUyMiUyQyUyMCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMGFjdGlvbiUzQSUyMCUyMi0lMjIlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlN0QpJTNCJTBBJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwcmV0dXJuJTIwbWV0aF8zYzVkZTg3MWIzMjRhNDEwYTQzOGNhN2JjNWEwYjc2OS5jYWxsKHRoaXMlMkMlMjBhcmd1bWVudHMlNUIwJTVEJTJDJTIwYXJndW1lbnRzJTVCMSU1RCUyQyUyMGFyZ3VtZW50cyU1QjIlNUQpJTNCJTBBJTIwJTIwJTIwJTIwJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTdEJTBBJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIw"
+   },
+   "success" : true
+}
+```
 
 You can use it in Javascript as follows: `"/api/hook/"+atob("Zjg3YmRjOTA3ZTVjNzdhNDIxNGM2Yzg5YTM5OGQ4N2Y=")`
 
