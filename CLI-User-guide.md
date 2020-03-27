@@ -1,5 +1,5 @@
 
-### 2 Starting
+## Dexcalibur Web Server
 
 The Dexcalibur GUI can be launch from the console by using the *dexcalibur* script.
 
@@ -37,8 +37,9 @@ Actually, the analysis is based on the Android API 24 (7.0.0). However, you can 
 ./dexcalibur --api=android:7.0.0 --app=<appname> --port=<webapp_port>
 ```
 
+## Dexcalibur as a library
 
-### 2.b Using the quickstart Nodejs module 
+### Using the quickstart Nodejs module 
 
 ```
 :~$ node --v8-pool-size=4 --max-old-space-size=8192
@@ -47,7 +48,7 @@ Actually, the analysis is based on the Android API 24 (7.0.0). However, you can 
 > project.find.class().count()
 ```
 
-### 2.c [Old] Using the step by step from the NodeJS terminal
+### Using the step by step from the NodeJS terminal
 
 First, open a Node.JS terminal and import the Dexcalibur tool. 
 Depending of the application size, the memory space and thread allow should be customized. (Here 4 threads, 8Gb of memory, see chapter 4 for more details). 
@@ -57,70 +58,25 @@ Depending of the application size, the memory space and thread allow should be c
 
 > var Dexcalibur = require("./src/project.js")
 > var project = new Dexcalibur("com.targeted.app")
-
-
-███████╗ ███████╗██╗  ██╗ ██████╗ █████╗ ██╗     ██╗██████╗ ██╗   ██╗██████╗
-██╔═══██╗██╔════╝╚██╗██╔╝██╔════╝██╔══██╗██║     ██║██╔══██╗██║   ██║██╔══██╗
-██║   ██║█████╗   ╚███╔╝ ██║     ███████║██║     ██║██████╔╝██║   ██║██████╔╝
-██║   ██║██╔══╝   ██╔██╗ ██║     ██╔══██║██║     ██║██╔══██╗██║   ██║██╔══██╗
-███████╔╝███████╗██╔╝ ██╗╚██████╗██║  ██║███████╗██║██████╔╝╚██████╔╝██║  ██║
-╚══════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
-
-╔══════════════════════════════════════════════════════════════════╗
-║ How to use ?                                                     ║
-║ > var project = new Dexcalibur.Project('com.example.test')       ║
-║ > project.analyze()                                              ║
-║ > project.find.invoke('calleed.name:loadLibrary')                ║
-║                                                                  ║
-║ Read *.help() ! =)                                               ║
-╚══════════════════════════════════════════════════════════════════╝
-```
-
-### 2.d Generate a JS script, performing a "Java.use" for each classes from a package 
-
-
-To generate a "Java.use" call for each class from a given package.  
-```
-./dexcalibur --api=android:7.0.0 --app=com.sample.app --buildClass=java.lang --buildOut=../javaLang.js 
 ```
 
 ## 4. CLI Documentation
 
-### 4.a Project
-
-#### 4.a.I Device auto-detection
-
-If the device are not connected while project initializing, don't worry ! Just plug it, and recall your last failed command. The device will be automatically detected and set as default device. 
-
-In this case you could show something like it before your command output :
-```
-> project.pull()
-[!] Warning ! : device not selected. Searching ...
-╔═══════════════════════════[ Android devices ]═══════════════════════════════╗
-║ G3AZAAAAAA02A3B   :ASUS_Z00AD                                               ║
-╚═════════════════════════════════════════════════════════════════════════════╝
-[*] Device selected : G3AZAAAAAA02A3B
-
-[*] Package found
-[*] Package downloaded to /tmp/com.whatsapp.apk
-[*] APK decompiled in /tmp/ws/com.whatsapp_dex
-```
 
 ### 4.b Analyzer
 
-This is one of the main components of Dexcalibur. It performs statical analysis by parsing the original binaries and making a modelisation of the application. 
+The analyzer performs static analysis by parsing the original binaries and making a model of the application. 
 
 This component takes avantage of the Search API and Security Scanner in order to hook obfuscator methods and dynamically update his modelisation at runtime. It allows the analyzer to discover definition contained in encrypted Dex file, and make a more complete image of the application.
 
-
-#### 4.b.I Analyze with a single connected device
+#### 4.b.I Analyze with a single connected device (recommended)
 
 If a single device/emulator is connected and installed the packages *com.targeted.app*, the analyzer can be call as it : 
 
 ```
 > var project = new Dexcalibur("com.targeted.app")
 > project.pull()
-> project.useAPI("android:7.0.0").fullscan()
+> project.fullscan()
 ```
 
 #### 4.b.II Analyze with several connected devices
@@ -169,10 +125,63 @@ The search engine is based on two type of search :
 - to search into the graph by following cross reference and properties from a set of node
 - to filter one or more search results 
 
-#### 4.c.I Search from a set of node
+#### 4.c.I Search for a method
 
+to list all methods enclosed into a class where FQCN match the regexp .TelephonyManager.
 
-The search engine use to 
+```
+> Project.find.method("enclosingClass.name:TelephonyManager").show()
+Running deep search ...
++---------------------------------------------------------------------------------------------------------------------------+
+| Index  |  Class                                  |  Modifiers                       |  Method                              |
++---------------------------------------------------------------------------------------------------------------------------+
+| 0      | android.telephony.TelephonyManager      | [static,public,constructor]      | <clinit>                             | 
+| 1      | android.telephony.TelephonyManager      | [public,constructor]             | <init>                               | 
+| 2      | android.telephony.TelephonyManager      | [public]                         | getAllCellInfo                       | 
+| 3      | android.telephony.TelephonyManager      | [public]                         | getCallState                         | 
+| 4      | android.telephony.TelephonyManager      | [public]                         | getCellLocation                      | 
+| 5      | android.telephony.TelephonyManager      | [public]                         | getDataActivity                      | 
+| 6      | android.telephony.TelephonyManager      | [public]                         | getDataState                         | 
+| 7      | android.telephony.TelephonyManager      | [public]                         | getDeviceId                          | 
+| 8      | android.telephony.TelephonyManager      | [public]                         | getDeviceSoftwareVersion             | 
+| 9      | android.telephony.TelephonyManager      | [public]                         | getGroupIdLevel1                     | 
+| 10     | android.telephony.TelephonyManager      | [public]                         | getLine1Number                       | 
+| 11     | android.telephony.TelephonyManager      | [public]                         | getMmsUAProfUrl                      | 
+| 12     | android.telephony.TelephonyManager      | [public]                         | getMmsUserAgent                      | 
+| 13     | android.telephony.TelephonyManager      | [public]                         | getNeighboringCellInfo               | 
+| 14     | android.telephony.TelephonyManager      | [public]                         | getNetworkCountryIso                 | 
+| 15     | android.telephony.TelephonyManager      | [public]                         | getNetworkOperator                   | 
+| 16     | android.telephony.TelephonyManager      | [public]                         | getNetworkOperatorName               | 
+| 17     | android.telephony.TelephonyManager      | [public]                         | getNetworkType                       | 
+| 18     | android.telephony.TelephonyManager      | [public]                         | getPhoneType                         | 
+| 19     | android.telephony.TelephonyManager      | [public]                         | getSimCountryIso                     | 
+| 20     | android.telephony.TelephonyManager      | [public]                         | getSimOperator                       | 
+| 21     | android.telephony.TelephonyManager      | [public]                         | getSimOperatorName                   | 
+| 22     | android.telephony.TelephonyManager      | [public]                         | getSimSerialNumber                   | 
+| 23     | android.telephony.TelephonyManager      | [public]                         | getSimState                          | 
+| 24     | android.telephony.TelephonyManager      | [public]                         | getSubscriberId                      | 
+| 25     | android.telephony.TelephonyManager      | [public]                         | getVoiceMailAlphaTag                 | 
+| 26     | android.telephony.TelephonyManager      | [public]                         | getVoiceMailNumber                   | 
+| 27     | android.telephony.TelephonyManager      | [public]                         | hasCarrierPrivileges                 | 
+| 28     | android.telephony.TelephonyManager      | [public]                         | hasIccCard                           | 
+| 29     | android.telephony.TelephonyManager      | [public]                         | iccCloseLogicalChannel               | 
+| 30     | android.telephony.TelephonyManager      | [public]                         | iccExchangeSimIO                     | 
+| 31     | android.telephony.TelephonyManager      | [public]                         | iccOpenLogicalChannel                | 
+| 32     | android.telephony.TelephonyManager      | [public]                         | iccTransmitApduBasicChannel          | 
+| 33     | android.telephony.TelephonyManager      | [public]                         | iccTransmitApduLogicalChannel        | 
+| 34     | android.telephony.TelephonyManager      | [public]                         | isNetworkRoaming                     | 
+| 35     | android.telephony.TelephonyManager      | [public]                         | isSmsCapable                         | 
+| 36     | android.telephony.TelephonyManager      | [public]                         | isVoiceCapable                       | 
+| 37     | android.telephony.TelephonyManager      | [public]                         | listen                               | 
+| 38     | android.telephony.TelephonyManager      | [public]                         | sendEnvelopeWithStatus               | 
+| 39     | android.telephony.TelephonyManager      | [public]                         | setLine1NumberForDisplay             | 
+| 40     | android.telephony.TelephonyManager      | [public]                         | setOperatorBrandOverride             | 
+| 41     | android.telephony.TelephonyManager      | [public]                         | setPreferredNetworkTypeToGlobal      | 
+| 42     | android.telephony.TelephonyManager      | [public]                         | setVoiceMailNumber                   | 
++---------------------------------------------------------------------------------------------------------------------------+
+
+```
+
 
 #### 4.c.I Operation on results
 
@@ -193,7 +202,20 @@ Sometimes there is too much matches and you would like filter the results by som
 ```
 
 
-#### 4.c.I Use case
+#### 4.c.I Starting the application with a hook
+
+First activate hooks for methods:
+
+```
+> var  meth = Project.find.method("enclosingClass.name:TelephonyManager").get(7)
+> var  hook = Project.hook.probe(meth);
+```
+
+Then, you can spawn/attach to appp with the new hook.
+
+```
+> Project.hook.startBySpawn( null, "com.myapp")
+```
 
 
 
@@ -272,8 +294,27 @@ Returns : FinderJoin
 ```
 
 
+## CLI Documentation
 
-## 6. Troobleshooting
+#### 4.a.I Device auto-detection
+
+If the device are not connected while project initializing, don't worry ! Just plug it, and recall your last failed command. The device will be automatically detected and set as default device. 
+
+In this case you could show something like it before your command output :
+```
+> project.pull()
+[!] Warning ! : device not selected. Searching ...
+╔═══════════════════════════[ Android devices ]═══════════════════════════════╗
+║ G3AZAAAAAA02A3B   :ASUS_Z00AD                                               ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+[*] Device selected : G3AZAAAAAA02A3B
+
+[*] Package found
+[*] Package downloaded to /tmp/com.whatsapp.apk
+[*] APK decompiled in /tmp/ws/com.whatsapp_dex
+```
+
+## Troobleshooting
 
 ### 6.a Heap overflow during *.fullscan() calls
 
