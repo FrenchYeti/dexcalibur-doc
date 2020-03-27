@@ -132,7 +132,7 @@ Results are better if the application has been executed several times with instr
 
 ## Probes
 
-The list of loaded probes can loaded at http://localhost:8000/api/probe
+The list of loaded probes can be seen at http://localhost:8000/api/probe
 
 ```json
       {
