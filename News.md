@@ -1,5 +1,51 @@
 Latest news can be found here.
 
+## [EDITING] 18 April 2019 - Future release, Big update
+
+Since several month i prepare the future Dexcalibur release (0.7). Today, i would share with you some improvements and new features. 
+
+Each following improvement/feature are detailled into a dedicated section below.
+- Easy install though NPM (no more configuration / dependencies to handle manually)
+- Simplify Dexcalibur launch / workflows
+- Project management
+- Device management 
+- Smali VM
+
+### 1/ NPM Install
+
+Lot of users send me issues caused by misconfiguration, missing dependencies or error related to dependencies version.
+
+
+Before v0.7, in order to install Dexcalibur, you had to fill a file manually with several absolute path and you had to have at least:
+- nodejs >= 12
+- java >= 8
+- apktool
+- adb / android platform tools
+- baksmali (packaged with dexcalibur)
+
+Today, Dexcalibur requires only :
+- nodejs >= 12
+- java >= 8
+
+Now, Dexcalibur can be installed by doing:
+```
+$ npm install -g dexcalibur
+$ dexcalibur
+```
+
+At first run, Dexcalibur starts "Install mode":
+
+*Step 1 :*
+![step1](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/dxc_installer-step1.png)
+
+*Step 2 :*
+![step2](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/dxc_installer-step2.png)
+
+
+
+
+
+
 ## 02 December 2019 - New feature : auto save
 
 Did you never be afraid to lost your work when Dexcalibur crashes/exits ? Actually, a backup mechanism already exists, however you need to go into Setting -> Save menu, so it can be boring...   
