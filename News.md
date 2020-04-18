@@ -7,6 +7,7 @@ Since several month i prepare the future Dexcalibur release (0.7). Today, i woul
 Each following improvement/feature are detailled into a dedicated section below.
 - Easy install though NPM (no more configuration / dependencies to handle manually)
 - Simplify Dexcalibur launch / workflows
+- Platform Manager (improvement of Android API analysis)  
 - Project management
 - Device management 
 - Smali VM
@@ -73,8 +74,20 @@ As you can see into the screenshot below, this page offers several actions relat
  - Install device profile 
  - Install plugins (inspectors)
   
+### 3. Platform Manager
 
+Why Dexcalibur was not able to hook automatically `InMemoryClassLoader` ? Because Dexcalibur was based by default on Android API 24 (which not contains this method).
 
+Now you can install/select the Android API to use during analysis.
+
+Use the `Platform Manager` to install additional Android API (called platforms). The list of platforms available is retrieved from Dexcalibur-registry. 
+![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/dxc_platform_manager.png)
+
+Into Dexcalibur typology a `platform` is a collection of binaries/classes/symbols/... provided by a specific platform. There are commonly two source for such information:
+- Android/misc SDK
+- Framework/boot.oat from real device 
+
+When Dexcalibur scans an application it starts by a short static analysis of the target platform in order to index Android API classes, internal classes, and if possible constructor specfic classes. 
 
 
 
