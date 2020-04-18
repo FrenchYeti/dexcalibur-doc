@@ -11,9 +11,9 @@ Each following improvement/feature are detailled into a dedicated section below.
 - Device management 
 - Smali VM
 
-### 1/ NPM Install
+### 1. Easy NPM Install / installer
 
-Lot of users send me issues caused by misconfiguration, missing dependencies or error related to dependencies version.
+Several users encountered issues caused by misconfiguration, missing dependencies or error related to dependencies version (mismatch of Frida or ADB major version, ...).
 
 
 Before v0.7, in order to install Dexcalibur, you had to fill a file manually with several absolute path and you had to have at least:
@@ -41,6 +41,38 @@ At first run, Dexcalibur starts "Install mode":
 *Step 2 :*
 ![step2](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/dxc_installer-step2.png)
 
+
+### 2. Dexcalibur launch
+
+Previous versions required several options such as : --app=<package> , --pull , --port=<webport> , ...
+If you use Dexcalibur for the first time, the correct value of option 
+
+When Dexcalibur is installed by using NPM, it can be launch with this simple command. No more options are required !
+```
+$ dexcalibur
+```
+
+By default, the web server listens on port 8000. Open your browser and visit `http://127.0.0.1:8000`. 
+
+The new "home page" (below) appears. 
+
+
+![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/splashscreen.png)
+
+As you can see into the screenshot below, this page offers several actions related to project management and engine configuration:
+
+*Project actions:*
+ - Open a recent projects
+ - Open an existing project into the workspace
+ - Analyze an APK (create a new project)
+ - Select an application into a device connected to the computer.
+ - Import a project 
+ 
+ *Engine actions using Dexcalibur marketplace:*
+ - Install additional platform image (to perform more accurate analysisp
+ - Install device profile 
+ - Install plugins (inspectors)
+  
 
 
 
