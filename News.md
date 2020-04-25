@@ -6,10 +6,10 @@ Since several month i prepare the future Dexcalibur release (0.7). Today, i woul
 
 Each following improvement/feature are detailled into a dedicated section below.
 - Easy install though NPM (no more configuration / dependencies to handle manually)
-- Simplify Dexcalibur launch / workflows
-- Platform Manager (improvement of Android API analysis)  
-- Project management
-- Device management 
+- Rethinking all workflows
+- Platform Manager: improvement of analysis by selecting target platform or using device as a target 
+- Project management: abilities to switch betwen project from a single instance
+- Device management: device profiling, install/start frida server, and more ...  
 - Smali VM
 
 ### 1. Easy NPM Install / installer
@@ -74,9 +74,15 @@ As you can see into the screenshot below, this page offers several actions relat
  - Install device profile 
  - Install plugins (inspectors)
   
+  
+  
+List and select an application to analyze
+ 
+![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/splash_select_app.png)
+
 ### 3. Platform Manager
 
-Why Dexcalibur was not able to hook automatically `InMemoryClassLoader` ? Because Dexcalibur was based by default on Android API 24 (which not contains this method).
+Why Dexcalibur was not able to hook automatically `InMemoryDexClassLoader` ? Because Dexcalibur was based by default on Android API 24 (which not contains this method).
 
 Now you can install/select the Android API to use during analysis.
 
@@ -88,6 +94,20 @@ Into Dexcalibur typology a `platform` is a collection of binaries/classes/symbol
 - Framework/boot.oat from real device 
 
 When Dexcalibur scans an application it starts by a short static analysis of the target platform in order to index Android API classes, internal classes, and if possible constructor specfic classes. 
+
+### 4. Device Management
+
+Now, for several reasons explained later, the device running frida-server is a master piece of Dexcalibur logic. 
+
+- Download/install/start a compatible version of frida-server/frida-gadget is boring : let's Dexcalibur do it. 
+- If you should understand an application into a specific context, you should be able to detect calls of undocumented Android methods, so lets Dexcalibur select better platform : Android API from the SDK (android.jar), or Android API from the device (boot.oat)  
+
+Before to start to use Dexcalibur, the device manager allows you to *enroll* a device. Device enrollment performs:
+- Device profiling: gather properties, permissions, metadata, ...
+- Install compatible frida-server into the device
+- Download the Android API binary (android.jar) from Android SDK as a DEX file in order to perform analysis of the platform.
+
+![Device Manager](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/devmanager_splash_list.png)
 
 
 
