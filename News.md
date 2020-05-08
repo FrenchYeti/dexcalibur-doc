@@ -109,6 +109,14 @@ Two firsts choices allow you to use Dexcalibur only for static analysis purpose 
 
 ### 3. Better control of frida-server and hooking session
 
+Now you can start/stop frida-server from `Hook > Dashboard` page, and detect frida-server status. Several issues related to spawn/attach has been fixed.
+
+![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/v0.7.0/dexc_v070_fridaserver.png)
+
+You can now *Unload hooks*, *Clear hook messages*, and *Kill application*  from `Hook > Logs` page.
+
+![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/v0.7.0/dexc_v070_hookcontrol.png)
+
 
 ### 4. Platform Manager
 
