@@ -8,14 +8,13 @@ Latest release can be found here :
 [Github](https://github.com/FrenchYeti/dexcalibur)
 [NPM](https://www.npmjs.com/package/dexcalibur)
 
-Each following improvement/feature are detailled into a dedicated section below.
+Each following improvement/feature:
 - Easy install though NPM (no more configuration / dependencies to handle manually)
 - Dexcalibur launch / new project
-- Better control during hooking : tart/stop frida server, unload hooks, re-spawn, clear hook logs, kill app
+- Better control of frida-server and hooking session tart/stop frida server, unload hooks, re-spawn, clear hook logs, kill app
 - Platform Manager: improvement of analysis by selecting target platform or using device as a target 
-- Project management: abilities to switch betwen project from a single instance
 - Device management: device profiling, install/start frida server, and more ...  
-- Smali VM
+- Smali VM (not detailled here)
 
 ### 1. Easy NPM Install / installer
 
@@ -48,7 +47,7 @@ At first run, Dexcalibur starts "Install mode":
 ![step2](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/dxc_installer-step2.png)
 
 
-### 2. Dexcalibur launch / new project
+### 2. Dexcalibur launch / new project / project switching without restart
 
 Previous versions required several options such as : --app=<package> , --pull , --port=<webport> , ...
 If you use Dexcalibur for the first time, the correct value for each option was difficult to find. 
@@ -72,8 +71,8 @@ As you can see into the screenshot below, this page offers several actions relat
  - Import a project 
  
  *Engine actions using Dexcalibur marketplace:*
- - Install additional platform image (to perform more accurate analysisp
- - Install device profile 
+ - Install additional platform image (to perform more accurate analysis)
+ - Install real device profile 
  - Install plugins (inspectors)
   
   
@@ -81,20 +80,24 @@ You can start a new project by selecting an application into a connected device,
 
  
 #### 2.A List and select an application to analyze
+
+Once you have enrolled your device, you can select an application installed and start to analyze it. If you hope to analyze vendor-specific app or system app, be aware some APK not contain bytecode (it will be detailled into a future post).
  
 ![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/v0.7.0/dexc_v070_select.png)
+
+It creates a new project and you will be able to share it with other peoples.
   
 #### 2.B Open an APK
  
 
 ![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/v0.7.0/dexc_v070_new.png)
 
-You can analyze local and remote APK by using one of three options availables:
+You can analyze local and remote APKs by using one of three options availables:
 * From a remote URL : the APK is downloaded
-* By uploading your APK : simple with small APK
+* By uploading your APK ( small APK ), allow you to run Dexcalibur on dedicated computer
 * By entering absolute path of your local APK
 
-The name of you project can be anything, but should be unique. The package name is detected automatically.
+The name of you project can be anything, but it must be unique. The package name is detected automatically.
 
 Next, you should select the target platform to help dexcalibur to detect methods from Android framework during static analysis. You have several choice : 
 * Choosing a specifc platform version
@@ -103,7 +106,11 @@ Next, you should select the target platform to help dexcalibur to detect methods
 
 Two firsts choices allow you to use Dexcalibur only for static analysis purpose if you have not default device.
 
-### 3. Platform Manager
+
+### 3. Better control of frida-server and hooking session
+
+
+### 4. Platform Manager
 
 Why Dexcalibur was not able to hook automatically `InMemoryDexClassLoader` ? Because Dexcalibur was based by default on Android API 24 (which not contains this method).
 
@@ -116,19 +123,21 @@ Into Dexcalibur typology a `platform` is a collection of binaries/classes/symbol
 - Android/misc SDK
 - Framework/boot.oat from real device 
 
-When Dexcalibur scans an application it starts by a short static analysis of the target platform in order to index Android API classes, internal classes, and if possible constructor specfic classes. 
+When Dexcalibur scans an application it starts by a short static analysis of the target platform in order to index Android API classes, internal classes, and if possible constructor specfic classes. Platforms are used during this step.
 
-### 4. Device Management
+### 5. Device Management
 
 Now, for several reasons explained later, the device running frida-server is a master piece of Dexcalibur logic. 
 
-- Download/install/start a compatible version of frida-server/frida-gadget is boring : let's Dexcalibur do it. 
-- If you should understand an application into a specific context, you should be able to detect calls of undocumented Android methods, so lets Dexcalibur select better platform : Android API from the SDK (android.jar), or Android API from the device (boot.oat)  
+- Download/install/start/stop a compatible version of frida-server/frida-gadget is boring : let's Dexcalibur do it. 
+- If you should understand an application into a specific context, you should be able to detect calls of undocumented Android methods, so lets Dexcalibur select better platform : Android API from the SDK (android.jar), or Android framework extracted from the device.
 
 Before to start to use Dexcalibur, the device manager allows you to *enroll* a device. Device enrollment performs:
 - Device profiling: gather properties, permissions, metadata, ...
-- Install compatible frida-server into the device
+- Download and Install compatible frida-server into the device
 - Download the Android API binary (android.jar) from Android SDK as a DEX file in order to perform analysis of the platform.
+
+Once your device has been enrolled, it is ready for hooking !
 
 ![Device Manager](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/v0.7.0/dexc_v070_dm.png)
 
