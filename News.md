@@ -1,12 +1,17 @@
 Latest news can be found here.
 
-## [EDITING] 18 April 2019 - Future release, Big update
+## 8 may 2019 - Dexcalibur 0.7.0 : New release, Big update
 
-Since several month i prepare the future Dexcalibur release (0.7). Today, i would share with you some improvements and new features. 
+Since several months i prepare the new Dexcalibur release (0.7). Today, i would share with you some improvements and new features. 
+
+Latest release can be found here :
+[Github](https://github.com/FrenchYeti/dexcalibur)
+[NPM](https://www.npmjs.com/package/dexcalibur)
 
 Each following improvement/feature are detailled into a dedicated section below.
 - Easy install though NPM (no more configuration / dependencies to handle manually)
-- Rethinking all workflows
+- Dexcalibur launch / new project
+- Better control during hooking : tart/stop frida server, unload hooks, re-spawn, clear hook logs, kill app
 - Platform Manager: improvement of analysis by selecting target platform or using device as a target 
 - Project management: abilities to switch betwen project from a single instance
 - Device management: device profiling, install/start frida server, and more ...  
@@ -43,20 +48,17 @@ At first run, Dexcalibur starts "Install mode":
 ![step2](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/dxc_installer-step2.png)
 
 
-### 2. Dexcalibur launch
+### 2. Dexcalibur launch / new project
 
 Previous versions required several options such as : --app=<package> , --pull , --port=<webport> , ...
-If you use Dexcalibur for the first time, the correct value of option 
+If you use Dexcalibur for the first time, the correct value for each option was difficult to find. 
 
-When Dexcalibur is installed by using NPM, it can be launch with this simple command. No more options are required !
-```
-$ dexcalibur
-```
+Now, everythin have been autmated. Once you installed and create your workspace succesfully, just run command : `dexcalibur`
+If you want work with big application, then increase heap size by adding options : `--max-heap <size in Mb>`  for exemple `--max-heap 8192`
 
 By default, the web server listens on port 8000. Open your browser and visit `http://127.0.0.1:8000`. 
 
 The new "home page" (below) appears. 
-
 
 ![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/splashscreen.png)
 
@@ -75,10 +77,31 @@ As you can see into the screenshot below, this page offers several actions relat
  - Install plugins (inspectors)
   
   
-  
-List and select an application to analyze
+You can start a new project by selecting an application into a connected device, or analyzing a side-loaded APK.
+
+ 
+#### 2.A List and select an application to analyze
  
 ![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/splash_select_app.png)
+  
+#### 2.B Open an APK
+ 
+
+![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/splash_select_app.png)
+
+You can analyze local and remote APK by using one of three options availables:
+* From a remote URL : the APK is downloaded
+* By uploading your APK : simple with small APK
+* By entering absolute path of your local APK
+
+The name of you project can be anything, but should be unique. The package name is detected automatically.
+
+Next, you should select the target platform to help dexcalibur to detect methods from Android framework during static analysis. You have several choice : 
+* Choosing a specifc platform version
+* lets Dexcalibur choose the platform according to Android manifest
+* use the platform of the device where hooking is done
+
+Two firsts choices allow you to use Dexcalibur only for static analysis purpose if you have not default device.
 
 ### 3. Platform Manager
 
