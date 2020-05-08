@@ -60,7 +60,7 @@ By default, the web server listens on port 8000. Open your browser and visit `ht
 
 The new "home page" (below) appears. 
 
-![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/splashscreen.png)
+![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/v0.7.0/dexc_v070_recents.png)
 
 As you can see into the screenshot below, this page offers several actions related to project management and engine configuration:
 
@@ -82,12 +82,12 @@ You can start a new project by selecting an application into a connected device,
  
 #### 2.A List and select an application to analyze
  
-![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/splash_select_app.png)
+![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/v0.7.0/dexc_v070_select.png)
   
 #### 2.B Open an APK
  
 
-![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/splash_select_app.png)
+![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/v0.7.0/dexc_v070_new.png)
 
 You can analyze local and remote APK by using one of three options availables:
 * From a remote URL : the APK is downloaded
@@ -110,7 +110,7 @@ Why Dexcalibur was not able to hook automatically `InMemoryDexClassLoader` ? Bec
 Now you can install/select the Android API to use during analysis.
 
 Use the `Platform Manager` to install additional Android API (called platforms). The list of platforms available is retrieved from Dexcalibur-registry. 
-![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/dxc_platform_manager.png)
+![home page](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/v0.7.0/dexc_v070_pm.png)
 
 Into Dexcalibur typology a `platform` is a collection of binaries/classes/symbols/... provided by a specific platform. There are commonly two source for such information:
 - Android/misc SDK
@@ -130,7 +130,7 @@ Before to start to use Dexcalibur, the device manager allows you to *enroll* a d
 - Install compatible frida-server into the device
 - Download the Android API binary (android.jar) from Android SDK as a DEX file in order to perform analysis of the platform.
 
-![Device Manager](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/devmanager_splash_list.png)
+![Device Manager](https://raw.githubusercontent.com/FrenchYeti/dexcalibur-doc/master/pictures/v0.7.0/dexc_v070_dm.png)
 
 
 
