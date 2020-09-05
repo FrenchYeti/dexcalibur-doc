@@ -1,15 +1,19 @@
 ## 1 Install requirements
 
-Install this requirements before to continue.
+Install these requirements before to continue.
 
-Desktop requirements :
 -   NodeJS > 12.0.0 (else UInt64 buffer contained into the targeted bytecode are not fully supported) 
 -   [Frida](https://frida.re/) (any version, create an issue if you experiment a problem)
 -   Java > 8
 -   APKTool
 
+```
+pip install frida-tools
+``` 
+
+
 Device requirements :
--  Download and install Frida-server ([reference documentation]](https://frida.re/docs/android/))
+-  Download and install Frida-server on the device ([reference documentation](https://frida.re/docs/android/))
 
 ## 2 Pull/build the dependencies
 
