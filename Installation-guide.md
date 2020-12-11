@@ -60,6 +60,24 @@ In those case, manually start [frida-server](https://frida.re/docs/android/) on 
 adb shell su -c "/data/local/tmp/frida-server"
 ```
 
+## Update / Migrating
+
+#### From version <= 0.6.x
+
+You are using a previous version of Dexcalibur ? 
+
+Follow same steps than a new install, and when you should enter workspace path, enter your current workspace location. 
+
+
+#### From version >= 0.7
+
+Just by doing:
+```
+$  npm install -g dexcalibur
+``` 
+
+Existing configuration and workspace will be detected automatically. 
+
 
 ## Troubleshooting
 
