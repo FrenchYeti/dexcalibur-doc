@@ -1,106 +1,69 @@
-## 1 Install requirements
+## Install requirements
 
 Install these requirements before to continue.
 
--   NodeJS > 12.0.0 (else UInt64 buffer contained into the targeted bytecode are not fully supported) 
--   [Frida](https://frida.re/) (any version, create an issue if you experiment a problem)
+-   NodeJS  12.x LTS (before that version UInt64 buffer contained into the targeted bytecode are not fully supported, after that version see  [Issue #27](https://github.com/FrenchYeti/dexcalibur/issues/27) )
+-   [Frida](https://frida.re/) on the host (any version, create an issue if you experiment a problem) for example use `pip install frida-tools`.
 -   Java > 8
--   APKTool
 
+
+## Install
+
+### From NPM package
+
+Run command:
 ```
-pip install frida-tools
+$  npm install -g dexcalibur
+```
+
+And start Dexcalibur with:
+```
+$  dexcalibur
+```
+Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) and follow instruction.
+
+Your default port number 8000 is already in use ? Specify a custom port by using `--port=<number>` like `$  dexcalibur --port=9999`
+
+
+Fill the form with the location of your workspace and default listening port, and submit it. 
+The workspace will contain a folder for each application you reverse using Dexcalibur.  
+![Install configuration](https://github.com/FrenchYeti/dexcalibur-doc/raw/master/pictures/dxc_installer-step1.png)
+
+Dexcalibur will create the workspace if the folder not exists. A standalone version of android platform tools, APKtool, and more will be downloaded into this workspace.
+![Running install](https://github.com/FrenchYeti/dexcalibur-doc/raw/master/pictures/dxc_installer-step2.png)
+
+
+Once install is done, restart Dexcalibur by killing it and doing (again)
+```
+$ dexcalibur
 ``` 
 
+### From sources
 
-Device requirements :
--  Download and install Frida-server on the device ([reference documentation](https://frida.re/docs/android/))
-
-## 2 Pull/build the dependencies
-
-First, you need to rebuild the dependencies for your version of node.
-Execute the following command from the repository containing the INSTALL.md file.
-```
-npm install
-``` 
-
-**You experiment some difficulties to install frida node module ?**
-> If NPM says there is not a module build for your node version, don't worry ! Check your node version with the command "*node --version*", if your major version is less than 12 you need to upgrade your node setup  or use NVM (node version manager), else install manually an older version of the frida module with "*npm install frida@12.1.1*" for example. 
-
-## 3 Configure
-
-Modify the following lines, into the **config.js** file, with the good values. 
-```
-    // Dexcalibur src location
-    dexcaliburPath: "/home/example/dexcalibur/src",
-    
-    // workspace location : folder where analyzed APK and data are stored
-    workspacePath: "/home/example/workspace/",
-    
-    // ADB location
-    adbPath: "/home/example/Android/Sdk/platform-tools/adb",
-    androidSdkPath: "/home/example/Android/Sdk/",
-
-    // APKTool location
-    apktPath: "/home/example/tools/apktool",
-```
-
-If Java binary is not in your $PATH, add the absolute path to your configuration file:
-```
-    javaBinPath: "/your/java/bin/path"
-```
+*TO DO*
 
 
-## 4 Run
+## Run
 
-Ensure your device is connected and detected. 
+- Ensure your device is connected and detected (`adb devices`, `adb shell`...).
+- **Enroll** your device using the Web UI (Home > Device Manager). If everything goes well, Dexcalibur will automatically download and push a **Frida server** to your device.
+- Create a project and start using Dexcalibur :)
 
-Start [frida-server](https://frida.re/docs/android/) on your device (you should adapt the command) :
+In most situations, Dexcalibur will automatically start the Frida server on your device. However, there are some cases where Dexcalibur is unable to start it or get its status:
+
+- if you set a custom name for frida-server binary
+- if you move frida-server at a custom location
+- if you use another way to inject frida
+
+In those case, manually start [frida-server](https://frida.re/docs/android/) on your device (you should adapt the command) :
 ```
 adb shell su -c "/data/local/tmp/frida-server"
 ```
 
-From the dexcalibur folder, run : 
-```
-./dexcalibur --app=com.app.test --port=8000 --pull
-```
-If the **--pull** parameters is set, Dexcalibur will pull the targeted APK from the device.
 
-If you need to specify an API version, use the --api parameter with the desired version.
+## Troubleshooting
 
-```
-./dexcalibur --app=com.app.test --api=android:7.0.0 --port=8000 --pull
-```
-
-
-## 5 (OPTIONAL) Use a different Android API version (default = Android 7.0.0)
-
-Dexcalibur source contains the decompiled Android API 22 Stubs (Android 7.0.0). If you need to hook or search a method relaying to a method or object from Android API version > 22, you will need to download or build the required APIs image.
-     
-### 5.A. Import a prebuilt Android API images
-
-The Android APIs image for each version will be published as soon as possible. 
-
-### 5.B. Build your own Android API images, from the SDK Android.
-
-(TODO...)
-
-* Download the desired Android API by using the Android SDK Manager.
-* Convert the **android.jar** file containing into a .dex file by using the Android **dx** tool.
-```
-mkdir /tmp/dxc
-cp <ANDROID_SDK_HOME>/platforms/android_<api_version>/android.jar /tmp/dxc/android.jar
-unzip /tmp/dxc/android.jar /tmp/dxc/android_classes
-java -jar <ANDROID_SDK_HOME>/build-tools/lib/dx.jar --dex --core-library --output /tmp/dxc/android.dex /tmp/dxc/android_classes
-```
-* Smalify the resulting .dex file, and move *.smali files into the Dexcalibur folder
-```
-baksmali d <DEXCALIBUR_HOME>/APIs/android_<api_version>/android.dex 
-```
-
-
-## 6. Troubleshooting
-
-### 6.A Dexcalibur fails to start (bad interpreter)
+### Dexcalibur fails to start (bad interpreter)
 
 If you get this error message *./dexcalibur: bad interpreter: /usr/bin/node: no such file or directory*, ensure *nodeJS* is installed and the path is good.
 
